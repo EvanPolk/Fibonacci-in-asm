@@ -7,15 +7,15 @@ fib:
 .LFB23:
 	.cfi_startproc
 .L2:
-	xor	%r8, %r8
-	movl	$1, %eax
-	decq	%rdi
+	xor	%rax, %rax            # Fancy way of setting %r8 to 0
+	movl	$1, %r8d            # Having 
 .L1:
-	leaq	(%r8, %rax), %rsi
-	movq	%rax, %r8
-	movq	%rsi, %rax
+	leaq	(%rax, %r8), %rsi
+	movq	%r8, %rax
+	movq	%rsi, %r8
 	decq	%rdi
 	jg	.L1
+.L3:
 	ret                # swapping %r8 and %rax removes need for movq before ret
 	.cfi_endproc
 .LFE23:
