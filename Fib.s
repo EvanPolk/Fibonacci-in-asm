@@ -7,10 +7,10 @@ fib:
 .LFB23:
 	.cfi_startproc
 .L2:
-	xor	%rax, %rax            # Fancy way of setting %r8 to 0
-	movl	$1, %r8d            # Having 
+	xor	%rax, %rax            # Having rax store last fibonacci number needed
+	movl	$1, %r8d              # Having r8 be the second to last fibonacci number
 .L1:
-	leaq	(%rax, %r8), %rsi
+	leaq	(%rax, %r8), %rsi     # I wanted to remove a decq so I end up calculating n+1th fib number, but reduces final storage.
 	movq	%r8, %rax
 	movq	%rsi, %r8
 	decq	%rdi
